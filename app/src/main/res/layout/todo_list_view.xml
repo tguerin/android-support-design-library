@@ -2,14 +2,15 @@
 <fr.tguerin.support.design.library.ui.list.TodoListView
     android:id="@+id/todo_list_view"
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <fr.tguerin.support.design.library.ui.util.EmptyRecyclerView
         android:id="@+id/todo_list"
-        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="?attr/actionBarSize"
         android:clipToPadding="false"
         android:padding="16dp"/>
 
@@ -18,7 +19,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:textSize="18sp"
-        android:text="@string/no_todo"/>
+        android:text="@string/no_todo"
+        android:textSize="18sp"/>
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        android:elevation="4dp"
+        app:theme="@style/ToolBarStyle"/>
 
 </fr.tguerin.support.design.library.ui.list.TodoListView>

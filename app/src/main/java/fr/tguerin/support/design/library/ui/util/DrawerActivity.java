@@ -2,10 +2,14 @@ package fr.tguerin.support.design.library.ui.util;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewStub;
 
@@ -13,22 +17,9 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import fr.tguerin.support.design.library.R;
 import fr.tguerin.support.design.library.ui.HomeActivity;
-import fr.tguerin.support.design.library.ui.NavigationDrawerFragment;
 import fr.tguerin.support.design.library.ui.settings.SettingsActivity;
 
-import static fr.tguerin.support.design.library.ui.NavigationDrawerFragment.POSITION_MY_TODO;
-
-public abstract class DrawerActivity extends AppCompatActivity implements NavigationDrawerFragment.NavigationDrawerCallbacks {
-
-    /**
-     * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
-     */
-    private NavigationDrawerFragment navigationDrawerFragment;
-
-    /**
-     * Used to store the last screen title. For use in {@link #restoreActionBar()}.
-     */
-    private CharSequence title;
+public abstract class DrawerActivity extends AppCompatActivity {
 
     private final int contentLayout;
 
@@ -36,7 +27,11 @@ public abstract class DrawerActivity extends AppCompatActivity implements Naviga
 
     private final Handler handler = new Handler();
 
+    Toolbar toolbar;
     @Bind(R.id.container) ViewStub containerStub;
+    @Bind(R.id.drawer_layout) DrawerLayout drawerLayout;
+    @Bind(R.id.navigation_view) NavigationView navigationView;
+    private ActionBarDrawerToggle drawerToggle;
 
     protected View containerView;
 
@@ -55,24 +50,64 @@ public abstract class DrawerActivity extends AppCompatActivity implements Naviga
         setContentView(R.layout.drawer_activity);
 
         ButterKnife.bind(this);
+
         containerStub.setLayoutResource(contentLayout);
         containerView = containerStub.inflate();
+        toolbar = (Toolbar) containerView.findViewById(R.id.toolbar);
+        if (toolbar != null) {
+            setSupportActionBar(toolbar);
+        }
 
-        navigationDrawerFragment = (NavigationDrawerFragment) getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
-        navigationDrawerFragment.setSelection(getSelfNavDrawerItem());
-        title = getTitle();
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setHomeButtonEnabled(true);
 
-        // Set up the drawer.
-        navigationDrawerFragment.setUp(R.id.navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout));
+        drawerToggle = new ActionBarDrawerToggle(
+                this,                    /* host Activity */
+                drawerLayout,                    /* DrawerLayout object */
+                R.string.navigation_drawer_open,  /* "open drawer" description for accessibility */
+                R.string.navigation_drawer_close  /* "close drawer" description for accessibility */
+        ) {
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                super.onDrawerClosed(drawerView);
+            }
+
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
+            }
+        };
+
+        // Defer code dependent on restoration of previous instance state.
+        drawerLayout.post(new Runnable() {
+            @Override
+            public void run() {
+                drawerToggle.syncState();
+            }
+        });
+
+        drawerLayout.setDrawerListener(drawerToggle);
+
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(MenuItem menuItem) {
+                onNavigationDrawerItemSelected(menuItem);
+                return true;
+            }
+        });
+        navigationView.getMenu().findItem(getSelfNavDrawerItem()).setChecked(true);
     }
 
-    @Override
-    public void onNavigationDrawerItemSelected(int position) {
-        if (self(position)) {
+
+    public void onNavigationDrawerItemSelected(MenuItem menuItem) {
+        int itemId = menuItem.getItemId();
+        if (self(itemId)) {
             return;
         }
-        switch (position) {
-            case POSITION_MY_TODO:
+        switch (itemId) {
+            case R.id.my_todos:
+                drawerLayout.closeDrawer(navigationView);
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -82,7 +117,8 @@ public abstract class DrawerActivity extends AppCompatActivity implements Naviga
                     }
                 }, 400);
                 break;
-            case NavigationDrawerFragment.POSITION_SETTINGS:
+            case R.id.settings:
+                drawerLayout.closeDrawer(navigationView);
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -98,21 +134,14 @@ public abstract class DrawerActivity extends AppCompatActivity implements Naviga
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        if (!navigationDrawerFragment.isDrawerOpen() && menuLayout != -1) {
+        if (!drawerLayout.isDrawerOpen(navigationView) && menuLayout != -1) {
             // Only show items in the action bar relevant to this screen
             // if the drawer is not showing. Otherwise, let the drawer
             // decide what to show in the action bar.
             getMenuInflater().inflate(menuLayout, menu);
-            restoreActionBar();
             return true;
         }
         return super.onCreateOptionsMenu(menu);
-    }
-
-    public void restoreActionBar() {
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayShowTitleEnabled(true);
-        actionBar.setTitle(title);
     }
 
     public abstract int getSelfNavDrawerItem();

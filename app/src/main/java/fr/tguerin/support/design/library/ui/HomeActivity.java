@@ -76,7 +76,7 @@ public class HomeActivity extends DrawerActivity {
 
     @Override
     public int getSelfNavDrawerItem() {
-        return NavigationDrawerFragment.POSITION_MY_TODO;
+        return R.id.my_todos;
     }
 
     public static void start(Context context) {

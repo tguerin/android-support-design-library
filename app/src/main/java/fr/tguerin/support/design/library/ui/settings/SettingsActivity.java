@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 
 import fr.tguerin.support.design.library.R;
-import fr.tguerin.support.design.library.ui.NavigationDrawerFragment;
 import fr.tguerin.support.design.library.ui.util.DrawerActivity;
 
 public class SettingsActivity extends DrawerActivity {
@@ -14,7 +13,7 @@ public class SettingsActivity extends DrawerActivity {
 
     @Override
     public int getSelfNavDrawerItem() {
-        return NavigationDrawerFragment.POSITION_SETTINGS;
+        return R.id.settings;
     }
 
     public static void start(Context context) {
