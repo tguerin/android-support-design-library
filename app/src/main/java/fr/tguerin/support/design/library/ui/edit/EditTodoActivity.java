@@ -4,12 +4,12 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.EditText;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -21,8 +21,8 @@ import static fr.tguerin.support.design.library.data.TodoProvider.todoProvider;
 
 public class EditTodoActivity extends AppCompatActivity {
 
-    @Bind(R.id.todo_title) EditText titleView;
-    @Bind(R.id.todo_content) EditText contentView;
+    @Bind(R.id.todo_title) TextInputLayout titleView;
+    @Bind(R.id.todo_content) TextInputLayout contentView;
 
     public static final String EXTRA_RESULT = "fr.tguerin.support.design.library.EXTRA_RESULT";
     private static final String EXTRA_TODO_ID = "fr.tguerin.support.design.library.EXTRA_TODO_ID";
@@ -46,8 +46,8 @@ public class EditTodoActivity extends AppCompatActivity {
         Intent intent = getIntent();
         if (intent.hasExtra(EXTRA_TODO_ID)) {
             todo = todoProvider().findOne(intent.getStringExtra(EXTRA_TODO_ID));
-            titleView.setText(todo.getTitle());
-            contentView.setText(todo.getContent());
+            titleView.getEditText().setText(todo.getTitle());
+            contentView.getEditText().setText(todo.getContent());
         }
     }
 
@@ -89,8 +89,8 @@ public class EditTodoActivity extends AppCompatActivity {
     private void syncTodo() {
         boolean hasData = hasData();
         if (hasData) {
-            final String title = titleView.getText().toString();
-            final String content = contentView.getText().toString();
+            final String title = titleView.getEditText().getText().toString();
+            final String content = contentView.getEditText().getText().toString();
             if (todo == null || !todo.isValid()) {
                 todo = todoProvider().save(new Todo(title, content));
             } else {
@@ -108,7 +108,7 @@ public class EditTodoActivity extends AppCompatActivity {
     }
 
     public boolean hasData() {
-        return titleView.length() > 0 || contentView.length() > 0;
+        return titleView.getEditText().length() > 0 || contentView.getEditText().length() > 0;
     }
 
     @NonNull

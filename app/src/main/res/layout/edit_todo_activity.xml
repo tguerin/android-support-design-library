@@ -5,22 +5,32 @@
               android:orientation="vertical"
               android:padding="16dp">
 
-    <EditText
+    <android.support.design.widget.TextInputLayout
         android:id="@+id/todo_title"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:alpha=".8"
-        android:hint="@string/hint_title"
-        android:textSize="18sp"
-        android:textStyle="bold"/>
+        android:layout_height="wrap_content">
 
-    <EditText
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:alpha=".8"
+            android:hint="@string/hint_title"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
         android:id="@+id/todo_content"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:alpha=".8"
-        android:hint="@string/hint_content"
-        android:textSize="16sp"/>
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:alpha=".8"
+            android:hint="@string/hint_content"
+            android:textSize="16sp"/>
+    </android.support.design.widget.TextInputLayout>
 
 </LinearLayout>
