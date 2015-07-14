@@ -3,7 +3,8 @@ package fr.tguerin.support.design.library.ui;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Toast;
+import android.support.design.widget.Snackbar;
+import android.view.View;
 
 import butterknife.OnClick;
 import fr.tguerin.support.design.library.R;
@@ -51,13 +52,18 @@ public class HomeActivity extends DrawerActivity {
         if (requestCode == EDIT_TODO_REQUEST_CODE) {
             switch (data.getIntExtra(EditTodoActivity.EXTRA_RESULT, -1)) {
                 case EditTodoActivity.TODO_DELETED:
-                    Toast.makeText(this, R.string.todo_deleted, Toast.LENGTH_SHORT).show();
+                    Snackbar.make(containerView, R.string.todo_deleted, Snackbar.LENGTH_SHORT).setAction("Cancel", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+                        }
+                    }).show();
                     break;
                 case EditTodoActivity.TODO_UPDATED:
-                    Toast.makeText(this, R.string.todo_updated, Toast.LENGTH_SHORT).show();
+                    Snackbar.make(containerView, R.string.todo_updated, Snackbar.LENGTH_SHORT).show();
                     break;
                 default:
-                    Toast.makeText(this, R.string.todo_created, Toast.LENGTH_SHORT).show();
+                    Snackbar.make(containerView, R.string.todo_created, Snackbar.LENGTH_SHORT).show();
                     break;
             }
         }
