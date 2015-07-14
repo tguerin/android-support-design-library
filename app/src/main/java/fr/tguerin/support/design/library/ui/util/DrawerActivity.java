@@ -2,6 +2,7 @@ package fr.tguerin.support.design.library.ui.util;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -27,8 +28,8 @@ public abstract class DrawerActivity extends AppCompatActivity {
 
     private final Handler handler = new Handler();
 
-    Toolbar toolbar;
-    @Bind(R.id.container) ViewStub containerStub;
+    ViewStub containerStub;
+    @Nullable @Bind(R.id.toolbar) Toolbar toolbar;
     @Bind(R.id.drawer_layout) DrawerLayout drawerLayout;
     @Bind(R.id.navigation_view) NavigationView navigationView;
     private ActionBarDrawerToggle drawerToggle;
@@ -49,10 +50,12 @@ public abstract class DrawerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.drawer_activity);
 
-        ButterKnife.bind(this);
-
+        containerStub = (ViewStub) findViewById(R.id.container);
         containerStub.setLayoutResource(contentLayout);
         containerView = containerStub.inflate();
+
+        ButterKnife.bind(this);
+
         toolbar = (Toolbar) containerView.findViewById(R.id.toolbar);
         if (toolbar != null) {
             setSupportActionBar(toolbar);
