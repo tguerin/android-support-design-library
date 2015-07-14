@@ -4,8 +4,12 @@ android {
     compileSdkVersion 22
     buildToolsVersion "22.0.1"
 
+    packagingOptions {
+        exclude 'META-INF/services/javax.annotation.processing.Processor'
+    }
+
     defaultConfig {
-        applicationId "fr.tguerin.supportdesignlibrary"
+        applicationId "fr.tguerin.support.design.library"
         minSdkVersion 16
         targetSdkVersion 22
         versionCode 1

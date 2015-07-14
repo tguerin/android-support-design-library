@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<fr.tguerin.support.design.library.ui.list.TodoListView
+    android:id="@+id/todo_list_view"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <fr.tguerin.support.design.library.ui.util.EmptyRecyclerView
+        android:id="@+id/todo_list"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:padding="16dp"/>
+
+    <TextView
+        android:id="@+id/todo_empty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textSize="18sp"
+        android:text="@string/no_todo"/>
+
+</fr.tguerin.support.design.library.ui.list.TodoListView>
