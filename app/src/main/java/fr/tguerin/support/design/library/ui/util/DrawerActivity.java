@@ -61,6 +61,10 @@ public abstract class DrawerActivity extends AppCompatActivity {
             setSupportActionBar(toolbar);
         }
 
+        setUpNavigationDrawer();
+    }
+
+    private void setUpNavigationDrawer() {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeButtonEnabled(true);
