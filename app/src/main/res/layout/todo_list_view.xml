@@ -29,7 +29,7 @@
             app:collapsedTitleTextAppearance="@style/CollapsedTitleTextAppearance"
             app:contentScrim="?attr/colorPrimary"
             app:expandedTitleTextAppearance="@style/ExpandedTitleTextAppearance"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+            app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed">
 
             <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
                        android:layout_width="match_parent"
