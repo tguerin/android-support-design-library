@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<fragment android:name="fr.tguerin.support.design.library.ui.settings.SettingsFragment"
-          xmlns:android="http://schemas.android.com/apk/res/android"
-          android:layout_width="match_parent"
-          android:layout_height="match_parent"
-          android:orientation="vertical"/>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <fragment
+        android:id="@+id/settings"
+        android:name="fr.tguerin.support.design.library.ui.settings.SettingsFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</FrameLayout>

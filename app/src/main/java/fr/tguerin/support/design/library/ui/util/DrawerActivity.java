@@ -2,9 +2,11 @@ package fr.tguerin.support.design.library.ui.util;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.Nullable;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewStub;
@@ -36,7 +38,9 @@ public abstract class DrawerActivity extends AppCompatActivity implements Naviga
 
     private final Handler handler = new Handler();
 
-    @Bind(R.id.container) ViewStub containerStub;
+    ViewStub containerStub;
+
+    @Nullable @Bind(R.id.toolbar) Toolbar toolbar;
 
     protected View containerView;
 
@@ -54,9 +58,15 @@ public abstract class DrawerActivity extends AppCompatActivity implements Naviga
         super.onCreate(savedInstanceState);
         setContentView(R.layout.drawer_activity);
 
-        ButterKnife.bind(this);
+        containerStub = (ViewStub) findViewById(R.id.container);
         containerStub.setLayoutResource(contentLayout);
         containerView = containerStub.inflate();
+
+        ButterKnife.bind(this);
+
+        if (toolbar != null) {
+            setSupportActionBar(toolbar);
+        }
 
         navigationDrawerFragment = (NavigationDrawerFragment) getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
         navigationDrawerFragment.setSelection(getSelfNavDrawerItem());
