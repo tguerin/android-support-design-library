@@ -85,14 +85,7 @@ public class NavigationDrawerFragment extends Fragment {
                 selectItem(position);
             }
         });
-        mDrawerListView.setAdapter(new ArrayAdapter<>(
-                getActionBar().getThemedContext(),
-                android.R.layout.simple_list_item_activated_1,
-                android.R.id.text1,
-                new String[]{
-                        getString(R.string.title_my_todos),
-                        getString(R.string.title_settings)
-                }));
+
         selectItem(mCurrentSelectedPosition, false);
         return mDrawerListView;
     }
@@ -110,6 +103,15 @@ public class NavigationDrawerFragment extends Fragment {
     public void setUp(int fragmentId, DrawerLayout drawerLayout) {
         mFragmentContainerView = getActivity().findViewById(fragmentId);
         mDrawerLayout = drawerLayout;
+
+        mDrawerListView.setAdapter(new ArrayAdapter<>(
+                getActionBar().getThemedContext(),
+                android.R.layout.simple_list_item_activated_1,
+                android.R.id.text1,
+                new String[]{
+                        getString(R.string.title_my_todos),
+                        getString(R.string.title_settings)
+                }));
 
         // set a custom shadow that overlays the main content when the drawer opens
         mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
