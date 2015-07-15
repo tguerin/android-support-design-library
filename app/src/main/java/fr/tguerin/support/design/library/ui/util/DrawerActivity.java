@@ -3,6 +3,7 @@ package fr.tguerin.support.design.library.ui.util;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -30,6 +31,7 @@ public abstract class DrawerActivity extends AppCompatActivity {
 
     ViewStub containerStub;
     @Nullable @Bind(R.id.toolbar) Toolbar toolbar;
+    @Nullable @Bind(R.id.collapsing_toolbar_layout) CollapsingToolbarLayout collapsingToolbarLayout;
     @Bind(R.id.drawer_layout) DrawerLayout drawerLayout;
     @Bind(R.id.navigation_view) NavigationView navigationView;
     private ActionBarDrawerToggle drawerToggle;
@@ -59,6 +61,10 @@ public abstract class DrawerActivity extends AppCompatActivity {
         toolbar = (Toolbar) containerView.findViewById(R.id.toolbar);
         if (toolbar != null) {
             setSupportActionBar(toolbar);
+        }
+
+        if (collapsingToolbarLayout != null) {
+            collapsingToolbarLayout.setTitle(getTitle());
         }
 
         setUpNavigationDrawer();
