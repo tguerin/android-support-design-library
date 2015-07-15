@@ -68,7 +68,7 @@ public class TodoListView extends FrameLayout {
 
         @Override
         public void onBindViewHolder(ItemViewHolder<TodoItemView> holder, int position) {
-            holder.getItemView().bind(todos.get(position));
+            holder.getItemView().bind(todos.get(getItemCount() - position - 1));
         }
 
         @Override
