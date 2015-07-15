@@ -32,6 +32,7 @@ Use FloatingActionButton :
 
 Use CoordinatorLayout :
 
+Just make TodoListView extends CoordinatorLayout
 
 Use AppBarLayout :
 
@@ -59,10 +60,10 @@ app:layout_behavior="@string/appbar_scrolling_view_behavior"
 ```
 
 
-scroll: this flag should be set for all views that want to scroll off the screen - for views that do not use this flag, they’ll remain pinned to the top of the screen
-enterAlways: this flag ensures that any downward scroll will cause this view to become visible, enabling the ‘quick return’ pattern
-enterAlwaysCollapsed: When your view has declared a minHeight and you use this flag, your View will only enter at its minimum height (i.e., ‘collapsed’), only re-expanding to its full height when the scrolling view has reached it’s top.
-exitUntilCollapsed: this flag causes the view to scroll off until it is ‘collapsed’ (its minHeight) before exiting
+* scroll: this flag should be set for all views that want to scroll off the screen - for views that do not use this flag, they’ll remain pinned to the top of the screen
+* enterAlways: this flag ensures that any downward scroll will cause this view to become visible, enabling the ‘quick return’ pattern
+* enterAlwaysCollapsed: When your view has declared a minHeight and you use this flag, your View will only enter at its minimum height (i.e., ‘collapsed’), only re-expanding to its full height when the scrolling view has reached it’s top.
+* exitUntilCollapsed: this flag causes the view to scroll off until it is ‘collapsed’ (its minHeight) before exiting
 
 
 Use CollapsibleToolbarLayout :
@@ -112,7 +113,6 @@ app:expandedTitleTextAppearance="@style/ExpandedTitleTextAppearance"
 ```xml
 app:expandedTitleMarginStart="64dp"
 ```
-
 
 Use parallax :
 
