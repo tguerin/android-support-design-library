@@ -1,13 +1,13 @@
 package fr.tguerin.support.design.library.ui.list;
 
 import android.content.Context;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 
 import java.util.List;
 
@@ -18,7 +18,7 @@ import fr.tguerin.support.design.library.model.Todo;
 import fr.tguerin.support.design.library.ui.util.EmptyRecyclerView;
 import fr.tguerin.support.design.library.ui.util.ItemViewHolder;
 
-public class TodoListView extends FrameLayout {
+public class TodoListView extends CoordinatorLayout {
 
     @Bind(R.id.todo_list) EmptyRecyclerView todoListView;
     @Bind(R.id.todo_empty) View emptyView;

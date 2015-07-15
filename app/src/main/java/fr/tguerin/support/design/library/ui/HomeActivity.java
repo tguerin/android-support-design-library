@@ -60,7 +60,12 @@ public class HomeActivity extends DrawerActivity {
                     }).show();
                     break;
                 case EditTodoActivity.TODO_UPDATED:
-                    Snackbar.make(containerView, R.string.todo_updated, Snackbar.LENGTH_SHORT).show();
+                    handler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            Snackbar.make(containerView, R.string.todo_updated, Snackbar.LENGTH_SHORT).show();
+                        }
+                    });
                     break;
                 default:
                     Snackbar.make(containerView, R.string.todo_created, Snackbar.LENGTH_SHORT).show();

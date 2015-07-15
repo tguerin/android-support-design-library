@@ -26,7 +26,7 @@ public abstract class DrawerActivity extends AppCompatActivity {
 
     private final int menuLayout;
 
-    private final Handler handler = new Handler();
+    protected final Handler handler = new Handler();
 
     ViewStub containerStub;
     @Nullable @Bind(R.id.toolbar) Toolbar toolbar;
