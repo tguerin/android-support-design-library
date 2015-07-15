@@ -4,32 +4,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <android.support.design.widget.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="192dp"
-        android:elevation="4dp">
-
-        <android.support.design.widget.CollapsingToolbarLayout
-            android:id="@+id/collapsing_toolbar_layout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:collapsedTitleTextAppearance="@style/CollapsedTitleTextAppearance"
-            app:expandedTitleTextAppearance="@style/ExpandedTitleTextAppearance"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed">
-
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="@color/colorPrimary"
-                app:layout_collapseMode="pin"
-                app:layout_scrollFlags="scroll|enterAlways"
-                app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
-        </android.support.design.widget.CollapsingToolbarLayout>
-
-    </android.support.design.widget.AppBarLayout>
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
 
     <fr.tguerin.support.design.library.ui.util.EmptyRecyclerView
         android:id="@+id/todo_list"
@@ -38,6 +14,44 @@
         android:clipToPadding="false"
         android:padding="16dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="192dp"
+        android:elevation="4dp"
+        android:fitsSystemWindows="true">
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/collapsing_toolbar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            app:collapsedTitleTextAppearance="@style/CollapsedTitleTextAppearance"
+            app:contentScrim="?attr/colorPrimary"
+            app:expandedTitleTextAppearance="@style/ExpandedTitleTextAppearance"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+            <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+                       android:layout_width="match_parent"
+                       android:layout_height="match_parent"
+                       android:fitsSystemWindows="true"
+                       android:scaleType="centerCrop"
+                       android:src="@drawable/landscape"
+                       app:layout_collapseMode="parallax"
+                       app:layout_collapseParallaxMultiplier="0.7"/>
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@android:color/transparent"
+                android:minHeight="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
+
+        </android.support.design.widget.CollapsingToolbarLayout>
+
+    </android.support.design.widget.AppBarLayout>
 
     <TextView
         android:id="@+id/todo_empty"
